@@ -10,7 +10,7 @@ But I wasn't very familiar which CSS transitions so I decided to follow its [MDN
 
 ## Live demo
 
-https://coderkd10.github.io/css-transition-demos
+https://coderkd10.github.io/css-transition-demos/
 
 ## TODOs
 
