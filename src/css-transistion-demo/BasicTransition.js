@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import TransitionParamsProvider from './TransitionParamsProvider';
 import './BasicTransition.css';
 
 const TransitionDemo = ({
@@ -22,8 +23,6 @@ const TransitionDemo = ({
 class App extends Component {
     state = {
         inInitialState: true,
-        duration: 1,
-        timingFunction: 'ease-in-out',
     };
 
     onTransitionRequest = () => {
@@ -32,36 +31,26 @@ class App extends Component {
         })
     }
 
-    onSubmit = (e) => {
-        e.preventDefault();
-        const duration = this.di.value || this.state.duration;
-        const timingFunction = this.tfi.value || this.state.timingFunction;
-        this.setState({
-            duration,
-            timingFunction,
-        });
-    }
-
     render(){
-        return <div>
-            <TransitionDemo  
-                inInitialState={this.state.inInitialState}
-                transitionDuration={this.state.duration}
-                timingFunction={this.state.timingFunction}
-            />
-            <button onClick={this.onTransitionRequest}>
-                Trigger Transition
-            </button>
-            <form onSubmit={this.onSubmit}>
-                <label>duration in s 
-                    <input placeholder="1" ref={ref => {this.di = ref}} />
-                </label><br/>
-                <label>timing function 
-                    <input placeholder="ease-in-out" ref={ref => {this.tfi = ref;}}/>
-                </label><br/>
-                <input type="submit" value="Update" />
-            </form>
-        </div>;
+        return (
+            <TransitionParamsProvider 
+                defaultParams={{
+                    duration: 1,
+                    timingFunction: 'ease-in-out'
+                }}
+                render={({ duration, timingFunction }) =>
+                    <Fragment>
+                        <TransitionDemo  
+                            inInitialState={this.state.inInitialState}
+                            transitionDuration={duration}
+                            timingFunction={timingFunction}
+                        />
+                        <button onClick={this.onTransitionRequest}>
+                            Trigger Transition
+                        </button>
+                    </Fragment>
+                }
+            />);
     }
 }
 
