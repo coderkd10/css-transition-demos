@@ -2,6 +2,7 @@
 // linked in the css transition article - https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
 
 import React, { Component } from 'react';
+import TransitionParamsProvider from './TransitionParamsProvider';
 import './MouseBall.css';
 
 class MouseTracker extends Component {
@@ -38,22 +39,36 @@ class MouseTracker extends Component {
     }
 }
 
-const Ball = ({ x, y }) => (
+const Ball = ({ x, y, transitionDuration, timingFunction }) => (
     <div className='ball' 
         style={{
-            transform: `translateX(calc(-50% + ${x}px)) translateY(calc(-50% + ${y}px)) translateZ(0)`
+            transform: `translateX(calc(-50% + ${x}px)) translateY(calc(-50% + ${y}px)) translateZ(0)`,
+            transitionDuration: transitionDuration + 's',
+            transitionTimingFunction: timingFunction
         }}
     />
 )
 
 const Demo = () => (
-    <MouseTracker 
-        render={({ x, y }) => 
-            <div>
-                <div>x = {x}</div>
-                <div>y = {y}</div>
-                <Ball x={x} y={y} />
-            </div>
+    <TransitionParamsProvider 
+        defaultParams={{
+            duration: 0.3,
+            timingFunction: 'ease-out'
+        }}
+        render={({ duration, timingFunction }) =>
+            <MouseTracker
+                render={({ x, y }) => 
+                    <div>
+                        <div>x = {x}</div>
+                        <div>y = {y}</div>
+                        <Ball 
+                            x={x} y={y} 
+                            transitionDuration={duration}
+                            timingFunction={timingFunction}    
+                        />
+                    </div>
+                }
+            />
         }
     />
 )
