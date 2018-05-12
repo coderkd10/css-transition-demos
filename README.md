@@ -14,5 +14,6 @@ https://coderkd10.github.io/css-transition-demos
 
 ## TODOs
 
+- Also add a `transition-delay`
 - Demo detecting start / completion of transition
 

@@ -42,6 +42,7 @@ export default class TransitionParamsProvider extends Component {
                         margin: '10px 0'
                     }}
                 >
+                    <b>Transition Parameters : </b><br/>
                     <label>
                         duration (in s)
                         <input
