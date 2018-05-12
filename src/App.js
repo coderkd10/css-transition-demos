@@ -1,5 +1,6 @@
 import React from 'react';
+import BasicTransitionDemo from './css-transistion-demo/BasicTransition';
 
-const App = () => <p>Todo</p>
+const App = () => <BasicTransitionDemo />
 
 export default App;
