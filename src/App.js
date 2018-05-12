@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter, Route, Link, Switch } from 'react-router-dom';
-import BasicTransitionDemo from './css-transistion-demo/BasicTransition';
-import MouseBallDemo from './css-transistion-demo/MouseBall';
+import BasicTransitionDemo from './css-transition-demo/BasicTransition';
+import MouseBallDemo from './css-transition-demo/MouseBall';
 
 const App = () => (
   <HashRouter>
